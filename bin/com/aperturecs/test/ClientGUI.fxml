@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.aperturecs.test.ClientController">
+   <children>
+      <Button layoutX="48.0" layoutY="335.0" mnemonicParsing="false" text="Inqurie My Ticket" />
+      <Button layoutX="300.0" layoutY="335.0" mnemonicParsing="false" text="Setting" />
+      <Label layoutX="23.0" layoutY="22.0" prefHeight="19.0" prefWidth="254.0" />
+      <Button layoutX="481.0" layoutY="335.0" mnemonicParsing="false" onAction="#logoutAction" text="Logout" />
+      <ListView layoutX="48.0" layoutY="70.0" prefHeight="248.0" prefWidth="504.0" />
+   </children>
+</AnchorPane>

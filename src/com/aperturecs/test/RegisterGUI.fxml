@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="lbmessage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.aperturecs.test.RegisterController">
+   <children>
+      <TextField fx:id="tfName" layoutX="214.0" layoutY="128.0" promptText="이름" />
+      <TextField fx:id="tfID" layoutX="214.0" layoutY="186.0" promptText="아이디" />
+      <TextField fx:id="tfPassword" layoutX="214.0" layoutY="244.0" promptText="비밀번호" />
+      <Button layoutX="239.0" layoutY="306.0" mnemonicParsing="false" onAction="#Actionhandler" text="제출" />
+      <Button layoutX="310.0" layoutY="306.0" mnemonicParsing="false" onAction="#CloseAction" text="취소" />
+      <TextField fx:id="tfEmail" layoutX="214.0" layoutY="70.0" promptText="이메일" />
+      <Label layoutX="92.0" layoutY="348.0" prefHeight="19.0" prefWidth="417.0" />
+   </children>
+</AnchorPane>
