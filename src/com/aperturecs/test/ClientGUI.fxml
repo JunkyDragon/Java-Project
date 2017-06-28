@@ -6,11 +6,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.aperturecs.test.ClientController">
-   <children>
-      <Button layoutX="48.0" layoutY="335.0" mnemonicParsing="false" text="Inqurie My Ticket" />
-      <Button layoutX="300.0" layoutY="335.0" mnemonicParsing="false" text="Setting" />
-      <Label layoutX="23.0" layoutY="22.0" prefHeight="19.0" prefWidth="254.0" />
-      <Button layoutX="481.0" layoutY="335.0" mnemonicParsing="false" onAction="#logoutAction" text="Logout" />
-      <ListView layoutX="48.0" layoutY="70.0" prefHeight="248.0" prefWidth="504.0" />
-   </children>
+	<children>
+		<Button layoutX="277.0" layoutY="350.0" mnemonicParsing="false" onAction="#myticketAction" text="Inqurie My Ticket" />
+		<Button layoutX="435.0" layoutY="350.0" mnemonicParsing="false" onAction="#settingAction" text="Setting" />
+		<Label layoutX="23.0" layoutY="22.0" prefHeight="19.0" prefWidth="254.0" />
+		<Button layoutX="515.0" layoutY="350.0" mnemonicParsing="false" onAction="#logoutAction" text="Logout" />
+		<ListView fx:id="lvList" layoutX="12.0" layoutY="14.0" prefHeight="321.0" prefWidth="574.0" />
+		<Button layoutX="14.0" layoutY="350.0" mnemonicParsing="false" onAction="#applicationAction" text="application" />
+      <Button layoutX="199.0" layoutY="350.0" mnemonicParsing="false" onAction="#inquireAction" text="Inquriy" />
+      <Button layoutX="124.0" layoutY="350.0" mnemonicParsing="false" onAction="#cancelAction" text="cancel" />
+	</children>
 </AnchorPane>
