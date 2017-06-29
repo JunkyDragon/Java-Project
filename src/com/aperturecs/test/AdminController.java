@@ -50,8 +50,6 @@ public class AdminController implements Initializable {
 	@FXML
 	private DatePicker dpDatetime;
 	@FXML
-	private TextField tfName2;
-	@FXML
 	private ListView<String> lvList;
 	private String name;
 	private String singer;
@@ -60,29 +58,48 @@ public class AdminController implements Initializable {
 	private String sponsor;
 	private String datetime;
 	private ObservableList<String> olist;
-	Statement stmt = null;
-	Connection conn = null;
-	ResultSet rs = null;
-	List<String> list = new ArrayList<>();
+	private Statement stmt = null;
+	private Connection conn = null;
+	private ResultSet rs = null;
+	private List<String> list = new ArrayList<>();
+	private String regex = "\\d+";
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/main", "root", "qwertyymca00");
+			stmt = conn.createStatement();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException se) {
+			se.printStackTrace();
+		}
 		getItems();
 	}
 
 	private void getItems() {
+		if (!lvList.getItems().isEmpty()) {
+			lvList.getItems().clear();
+		}
+		if (!list.isEmpty()) {
+			list.clear();
+		}
+		if (olist != null) {
+			olist.clear();
+		}
 		try {
-			network();
 			StringBuilder sb = new StringBuilder();
 			String sql = sb.append("select * from tickets;").toString();
 			rs = stmt.executeQuery(sql);
 			while (rs.next()) {
 				StringBuilder sb2 = new StringBuilder();
-				sb2.append(rs.getString("name") + " ");
-				sb2.append(rs.getString("sponsor") + " ");
-				sb2.append(rs.getString("mainsingername") + " ");
-				sb2.append(rs.getString("place") + " ");
-				sb2.append(rs.getInt("price") + " ");
+				sb2.append(rs.getString("name") + "-");
+				sb2.append(rs.getString("sponsor") + "-");
+				sb2.append(rs.getString("mainsingername") + "-");
+				sb2.append(rs.getString("place") + "-");
+				sb2.append(rs.getInt("price") + "-");
 				sb2.append(rs.getString("date") + "\n");
 				list.add(sb2.toString());
 			}
@@ -111,20 +128,6 @@ public class AdminController implements Initializable {
 		datetime = sb.toString();
 	}
 
-	public void network() {
-
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/main", "root", "qwertyymca00");
-			stmt = conn.createStatement();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException se) {
-			se.printStackTrace();
-		}
-
-	}
 
 	@FXML
 	public void MakeAction(ActionEvent event) {
@@ -132,10 +135,19 @@ public class AdminController implements Initializable {
 			name = tfName1.getText();
 			singer = tfSinger.getText();
 			place = tfPlace.getText();
+			if (!tfPrice.getText().matches(regex)) {
+				System.out.println("생성에 실패하였습니다.");
+				return;
+			}
 			price = Integer.parseInt(tfPrice.getText());
 			sponsor = tfSponsor.getText();
 			datetime = dpDatetime.getEditor().getText();
-			network();
+			if (name == null || singer == null || place == null || sponsor == null || datetime == null
+					|| "".equals(name) || "".equals(place) || "".equals(sponsor) || "".equals(datetime)) {
+				System.out.println("생성에 실패하였습니다.");
+				return;
+			}
+			
 			datetime();
 			StringBuilder sb = new StringBuilder();
 			String sql = sb.append("insert into tickets values(\"" + name + "\", \"" + sponsor + "\", \"" + singer
@@ -154,11 +166,19 @@ public class AdminController implements Initializable {
 
 	@FXML
 	public void DeleteAction(ActionEvent event) {
+		StringBuilder sb = new StringBuilder();
+		if (lvList.getSelectionModel().getSelectedItem() == null
+				|| "".equals(lvList.getSelectionModel().getSelectedItem())) {
+			return;
+		}
+		List<String> myList = new ArrayList<String>(
+				Arrays.asList(lvList.getSelectionModel().getSelectedItem().split("-")));
 
+		name = myList.get(0);
 		try {
-			name = tfName2.getText();
-			network();
-			StringBuilder sb = new StringBuilder();
+
+			
+			sb = new StringBuilder();
 			String sql = sb.append("delete from tickets where name = \"" + name + "\";").toString();
 			int r = stmt.executeUpdate(sql);
 			if (r == 1) {

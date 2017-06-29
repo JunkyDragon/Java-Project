@@ -50,6 +50,11 @@ public class RegisterController {
 		passwd = tfPassword.getText();
 		name = tfName.getText();
 		email = tfEmail.getText();
+		if (id == null || passwd == null || name == null || email == null || "".equals(id) || "".equals(passwd)
+				|| "".equals(name) || "".equals(email)) {
+			lbmessage.setText("빈칸이 존재합니다.");
+			return;
+		}
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/main", "root", "qwertyymca00");
@@ -75,7 +80,10 @@ public class RegisterController {
 			sb = new StringBuilder();
 			sql = sb.append("insert into register_user values(\"" + id + "\", \"" + passwd + "\", \"" + name
 					+ "\", true, \"" + email + "\" );").toString();
-			stmt = conn.createStatement();
+			System.out.println(sql);
+			stmt.executeUpdate(sql);
+			sb = new StringBuilder();
+			sql = sb.append("insert into list values(\"" + id + "\", " + null + ");").toString();
 			stmt.executeUpdate(sql);
 			Platform.exit();
 		} catch (ClassNotFoundException e) {

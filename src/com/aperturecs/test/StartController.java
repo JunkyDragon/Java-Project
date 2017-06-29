@@ -33,7 +33,7 @@ public class StartController {
 	private TextField tfPassword;
 	@FXML
 	private Label message;
-	private String id;
+	public static String id;
 	private String passwd;
 	private String getID;
 	private boolean getPer;
