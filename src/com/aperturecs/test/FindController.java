@@ -40,16 +40,16 @@ public class FindController {
 	public String name;
 	public String email;
 	public String id;
+
 	public void FindIDAction(ActionEvent event) {
 		name = tfName1.getText();
 		email = tfEmail1.getText();
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/main", "root", "qwertyymca00");
-			System.out.println("Connection OK");
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT * FROM register_user where name = \"" + name + "\" && EMAIL =\""+ email+ "\";");
-			System.out.println("SELECT * FROM register_user where name = \"" + name + "\" && EMAIL =\""+ email+ "\";");
+			ResultSet rs = stmt.executeQuery(
+					"SELECT * FROM register_user where name = \"" + name + "\" && EMAIL =\"" + email + "\";");
 			while (rs.next()) {
 				id = rs.getString("ID").toString();
 			}
@@ -60,10 +60,8 @@ public class FindController {
 			}
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
-			System.out.println("driver error");
 		} catch (SQLException se) {
 			se.printStackTrace();
-			System.out.println("connection error");
 		}
 	}
 
@@ -74,10 +72,9 @@ public class FindController {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/main", "root", "qwertyymca00");
-			System.out.println("Connection OK");
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt
-					.executeQuery("SELECT * FROM register_user where name = \"" + name + "\" && id = \"" + id + "\" && email = \"" + email + "\";");
+			ResultSet rs = stmt.executeQuery("SELECT * FROM register_user where name = \"" + name + "\" && id = \"" + id
+					+ "\" && email = \"" + email + "\";");
 			String password = null;
 			while (rs.next()) {
 				password = rs.getString("PASSWORD").toString();
@@ -89,10 +86,10 @@ public class FindController {
 			}
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
-			System.out.println("driver error");
+
 		} catch (SQLException se) {
 			se.printStackTrace();
-			System.out.println("connection error");
+
 		}
 	}
 

@@ -92,7 +92,6 @@ public class SettingController implements Initializable{
 			sb = new StringBuilder();
 			sb.append("update register_user set password = \"" + psChange.getText() + "\" where id = \"" + StartController.id +"\";");
 			sql = sb.toString();
-			System.out.println(sql);
 			stmt.executeUpdate(sql);
 			sb = new StringBuilder();
 			
@@ -107,17 +106,13 @@ public class SettingController implements Initializable{
 	public void QuitAction(ActionEvent event) {
 		try {
 			passwd = psQuit.getText();
-			System.out.println(passwd);
-			System.out.println("2");
 			if (passwd == null || "".equals(passwd)) {
 				lbmessage.setText("비밀번호를 입력해주세요");
 				return;
 			}
-			System.out.println("3");
 			sb = new StringBuilder();
 			sb.append("select * from register_user where id = \"" + StartController.id +"\";");
 			sql = sb.toString();
-			System.out.println(sql);
 			rs = stmt.executeQuery(sql);
 			while(rs.next()) {
 				getPasswd = rs.getString("PASSWORD");
@@ -133,7 +128,6 @@ public class SettingController implements Initializable{
 			sb = new StringBuilder();
 			sb.append("delete from register_user where id = \"" + StartController.id +"\";");
 			sql = sb.toString();
-			System.out.println(sql);
 			stmt.executeUpdate(sql);
 			sb = new StringBuilder();
 			sb.append("delete from list where id = \"" + StartController.id +"\";");

@@ -13,6 +13,7 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -33,7 +34,7 @@ public class RegisterController {
 	@FXML
 	private TextField tfID;
 	@FXML
-	private TextField tfPassword;
+	private PasswordField tfPassword = new PasswordField();
 	@FXML
 	private TextField tfEmail;
 	@FXML
@@ -80,7 +81,6 @@ public class RegisterController {
 			sb = new StringBuilder();
 			sql = sb.append("insert into register_user values(\"" + id + "\", \"" + passwd + "\", \"" + name
 					+ "\", true, \"" + email + "\" );").toString();
-			System.out.println(sql);
 			stmt.executeUpdate(sql);
 			sb = new StringBuilder();
 			sql = sb.append("insert into list values(\"" + id + "\", " + null + ");").toString();

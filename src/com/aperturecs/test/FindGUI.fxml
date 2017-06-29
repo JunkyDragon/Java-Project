@@ -11,12 +11,16 @@
 	prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
 	fx:controller="com.aperturecs.test.FindController">
 	<children>
-		<TextField fx:id="tfName1" layoutX="130.0" layoutY="56.0"
-			promptText="이름" />
 		<Button layoutX="182.0" layoutY="114.0" mnemonicParsing="false"
 			onAction="#FindIDAction" text="Button" />
+		<TextField fx:id="tfEmail1" layoutX="130.0" layoutY="19.0"
+			promptText="이메일" />
+		<TextField fx:id="tfName1" layoutX="130.0" layoutY="56.0"
+			promptText="이름" />
 		<TextField fx:id="tfName2" layoutX="128.0" layoutY="216.0"
 			promptText="이름" />
+		<TextField fx:id="tfEmail2" layoutX="128.0" layoutY="253.0"
+			promptText="이메일" />
 		<TextField fx:id="tfID" layoutX="128.0" layoutY="290.0"
 			promptText="아이디" />
 		<Button layoutX="180.0" layoutY="331.0" mnemonicParsing="false"
@@ -32,9 +36,5 @@
 			text="---------------------------------------------------------------------" />
 		<Button layoutX="526.0" layoutY="360.0" mnemonicParsing="false"
 			onAction="#closeAction" text="닫기" />
-		<TextField fx:id="tfEmail1" layoutX="130.0" layoutY="19.0"
-			promptText="이메일" />
-		<TextField fx:id="tfEmail2" layoutX="128.0" layoutY="253.0"
-			promptText="이메일" />
 	</children>
 </AnchorPane>

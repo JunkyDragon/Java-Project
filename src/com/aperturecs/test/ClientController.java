@@ -62,10 +62,10 @@ public class ClientController implements Initializable {
 			conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/main", "root", "qwertyymca00");
 			stmt = conn.createStatement();
 			resetItem();
-			resetList();
 			getItem();
-			getList();
 			setItem();
+			resetList();
+			getList();
 			setList();
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -103,7 +103,7 @@ public class ClientController implements Initializable {
 				lists = rs.getString("list");
 			}
 			if (lists != null && !"".equals(lists)) {
-				lList = Arrays.asList(lists.split("-"));
+				lList = new ArrayList<>(Arrays.asList(lists.split("-")));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -148,12 +148,62 @@ public class ClientController implements Initializable {
 
 	@FXML
 	public void applicationAction(ActionEvent event) {
-		
+		try {
+			getList();
+			if (lvItem.getSelectionModel().getSelectedItem() == null
+					|| "".equals(lvItem.getSelectionModel().getSelectedItem())) {
+				return;
+			}
+			if (lList.contains(lvItem.getSelectionModel().getSelectedItem())) {
+				return;
+			}
+			sb = new StringBuilder();
+			lList.add(lvItem.getSelectionModel().getSelectedItem());
+			for (String string : lList) {
+				sb.append(string);
+				sb.append("-");
+			}
+			lists = sb.toString();
+			sb = new StringBuilder();
+			sql = sb.append("update list set list = \"" + lists + "\" where id = \"" + StartController.id + "\";")
+					.toString();
+			stmt.executeUpdate(sql);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		resetList();
+		getList();
+		setList();
 	}
 
 	@FXML
 	public void cancelAction(ActionEvent event) {
-		
+		try {
+			getList();
+			sb = new StringBuilder();
+			if (lvList.getSelectionModel().getSelectedItem() == null
+					|| "".equals(lvList.getSelectionModel().getSelectedItem())) {
+				return;
+			}
+			int where = lList.indexOf(lvList.getSelectionModel().getSelectedItem());
+			lList.remove(where);
+			for (String string : lList) {
+				sb.append(string);
+				sb.append("-");
+			}
+			lists = sb.toString();
+			sb = new StringBuilder();
+			sql = sb.append("update list set list = \"" + lists + "\" where id = \"" + StartController.id + "\";")
+					.toString();
+			stmt.executeUpdate(sql);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		resetList();
+		getList();
+		setList();
 	}
 
 	@FXML

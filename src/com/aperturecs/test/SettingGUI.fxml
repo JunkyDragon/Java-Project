@@ -6,20 +6,31 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="265.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.aperturecs.test.SettingController">
-   <children>
-      <Label layoutX="60.0" layoutY="49.0" text="비밀번호 변경">
-         <font>
-            <Font size="23.0" />
-         </font>
-      </Label>
-      <PasswordField fx:id="psCurrent" layoutX="43.0" layoutY="109.0" promptText="현재 비밀번호" />
-      <PasswordField fx:id="psChange" layoutX="43.0" layoutY="159.0" promptText="바꾼 비밀번호" />
-      <PasswordField fx:id="psAgain" layoutX="46.0" layoutY="213.0" promptText="재입력" />
-      <Button layoutX="46.0" layoutY="319.0" mnemonicParsing="false" onAction="#SubmitAction" text="제출" />
-      <Button layoutX="158.0" layoutY="319.0" mnemonicParsing="false" onAction="#CloseAction" text="Close" />
-      <PasswordField fx:id="psQuit" layoutX="2.0" layoutY="366.0" promptText="현재 비밀번호" />
-      <Button layoutX="178.0" layoutY="365.0" mnemonicParsing="false" onAction="#QuitAction" text="탈퇴하기" />
-      <Label fx:id="lbmessage" layoutX="46.0" layoutY="265.0" prefHeight="19.0" prefWidth="172.0" />
-   </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity"
+	minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+	prefWidth="265.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="com.aperturecs.test.SettingController">
+	<children>
+		<Button layoutX="158.0" layoutY="319.0" mnemonicParsing="false"
+			onAction="#CloseAction" text="Close" />
+		<Label layoutX="60.0" layoutY="49.0" text="비밀번호 변경">
+			<font>
+				<Font size="23.0" />
+			</font>
+		</Label>
+		<PasswordField fx:id="psCurrent" layoutX="43.0" layoutY="109.0"
+			promptText="현재 비밀번호" />
+		<PasswordField fx:id="psChange" layoutX="43.0" layoutY="159.0"
+			promptText="바꾼 비밀번호" />
+		<PasswordField fx:id="psAgain" layoutX="46.0" layoutY="213.0"
+			promptText="재입력" />
+		<Button layoutX="46.0" layoutY="319.0" mnemonicParsing="false"
+			onAction="#SubmitAction" text="제출" />
+		<PasswordField fx:id="psQuit" layoutX="2.0" layoutY="366.0"
+			promptText="현재 비밀번호" />
+		<Button layoutX="178.0" layoutY="365.0" mnemonicParsing="false"
+			onAction="#QuitAction" text="탈퇴하기" />
+		<Label fx:id="lbmessage" layoutX="46.0" layoutY="265.0"
+			prefHeight="19.0" prefWidth="172.0" />
+	</children>
 </AnchorPane>

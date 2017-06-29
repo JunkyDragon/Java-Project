@@ -103,7 +103,6 @@ public class AdminController implements Initializable {
 				sb2.append(rs.getString("date") + "\n");
 				list.add(sb2.toString());
 			}
-			System.out.println(list);
 			olist = FXCollections.observableArrayList(list);
 			lvList.setItems(olist);
 			lvList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);

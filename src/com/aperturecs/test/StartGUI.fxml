@@ -10,6 +10,8 @@
 	prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
 	fx:controller="com.aperturecs.test.StartController">
 	<children>
+		<Button layoutX="377.0" layoutY="349.0" mnemonicParsing="false"
+			onAction="#CloseAction" text="Exit" />
 		<TextField fx:id="tfID" layoutX="175.0" layoutY="160.0"
 			prefHeight="40.0" prefWidth="250.0" promptText="아이디" />
 		<PasswordField fx:id="tfPassword" layoutX="175.0"
@@ -20,8 +22,6 @@
 			onAction="#RegisterActionhandler" text="Register" />
 		<Button layoutX="285.0" layoutY="349.0" mnemonicParsing="false"
 			onAction="#FindActionhandler" text="Find" />
-		<Button layoutX="377.0" layoutY="349.0" mnemonicParsing="false"
-			onAction="#CloseAction" text="Exit" />
 		<Label fx:id="message" layoutX="175.0" layoutY="268.0"
 			prefHeight="19.0" prefWidth="250.0" />
 	</children>
