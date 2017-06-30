@@ -59,7 +59,7 @@ public class ClientController implements Initializable {
 		// TODO Auto-generated method stub
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/main", "root", "qwertyymca00");
+			conn = DriverManager.getConnection("jdbc:mysql://javaproject.c4rqyk8nyct0.ap-northeast-2.rds.amazonaws.com:3306/main", "root", "qwertyymca00");
 			stmt = conn.createStatement();
 			resetItem();
 			getItem();

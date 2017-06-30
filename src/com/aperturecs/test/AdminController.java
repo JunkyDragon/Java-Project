@@ -68,7 +68,7 @@ public class AdminController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/main", "root", "qwertyymca00");
+			conn = DriverManager.getConnection("jdbc:mysql://javaproject.c4rqyk8nyct0.ap-northeast-2.rds.amazonaws.com:3306/main", "root", "qwertyymca00");
 			stmt = conn.createStatement();
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block

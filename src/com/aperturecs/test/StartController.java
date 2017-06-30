@@ -4,16 +4,20 @@
 package com.aperturecs.test;
 
 import java.io.IOException;
+import java.net.URL;
+
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import java.sql.*;
+import java.util.ResourceBundle;
 
 /**
  * <pre>
@@ -26,7 +30,7 @@ import java.sql.*;
  * @author : Administrator
  * @version : 1.0
  */
-public class StartController {
+public class StartController implements Initializable {
 	@FXML
 	private TextField tfID;
 	@FXML
@@ -39,19 +43,30 @@ public class StartController {
 	private boolean getPer;
 	private String getPasswd;
 	public static Stage oldstage;
+	private Statement stmt;
+	private Connection conn;
+	private ResultSet rs;
 
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		// TODO Auto-generated method stub
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			conn = DriverManager.getConnection("jdbc:mysql://javaproject.c4rqyk8nyct0.ap-northeast-2.rds.amazonaws.com:3306/main", "root", "qwertyymca00");
+			stmt = conn.createStatement();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	}
+	
 	public void Actionhandler(ActionEvent event) throws IOException {
 		id = tfID.getText();
 		passwd = tfPassword.getText();
-		Statement stmt = null;
-		Connection conn = null;
-		ResultSet rs = null;
+		
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/main", "root", "qwertyymca00");
-			StringBuilder sb = new StringBuilder();
+			StringBuilder sb = new StringBuilder();	
 			String sql = sb.append("select * from register_user where id = \"" + id + "\";").toString();
-			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 			while (rs.next()) {
 				getID = rs.getString("ID");
@@ -83,9 +98,6 @@ public class StartController {
 			} else {
 				message.setText("아이디나 비밀번호가 틀립니다.");
 			}
-		} catch (ClassNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -117,7 +129,7 @@ public class StartController {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}	
+		}
 	}
 
 	public void CloseAction(ActionEvent event) {

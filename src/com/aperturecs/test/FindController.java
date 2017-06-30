@@ -5,9 +5,13 @@ package com.aperturecs.test;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+
+import java.net.URL;
 import java.sql.*;
+import java.util.ResourceBundle;
 
 /**
  * <pre>
@@ -20,7 +24,7 @@ import java.sql.*;
  * @author : Administrator
  * @version : 1.0
  */
-public class FindController {
+public class FindController implements Initializable{
 	@FXML
 	private TextField tfName1;
 	@FXML
@@ -40,14 +44,24 @@ public class FindController {
 	public String name;
 	public String email;
 	public String id;
-
+	private Statement stmt;
+	private Connection conn;
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		// TODO Auto-generated method stub
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			conn = DriverManager.getConnection("jdbc:mysql://javaproject.c4rqyk8nyct0.ap-northeast-2.rds.amazonaws.com:3306/main", "root", "qwertyymca00");
+			stmt = conn.createStatement();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	}
 	public void FindIDAction(ActionEvent event) {
 		name = tfName1.getText();
 		email = tfEmail1.getText();
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/main", "root", "qwertyymca00");
-			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(
 					"SELECT * FROM register_user where name = \"" + name + "\" && EMAIL =\"" + email + "\";");
 			while (rs.next()) {
@@ -58,8 +72,6 @@ public class FindController {
 			} else {
 				lbID.setText("ID : " + (String) id);
 			}
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
 		} catch (SQLException se) {
 			se.printStackTrace();
 		}
@@ -70,9 +82,6 @@ public class FindController {
 		email = tfEmail2.getText();
 		String id = tfID.getText();
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/main", "root", "qwertyymca00");
-			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT * FROM register_user where name = \"" + name + "\" && id = \"" + id
 					+ "\" && email = \"" + email + "\";");
 			String password = null;
@@ -84,9 +93,6 @@ public class FindController {
 			} else {
 				lbPasswd.setText("password : " + (String) password);
 			}
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-
 		} catch (SQLException se) {
 			se.printStackTrace();
 

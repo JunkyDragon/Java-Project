@@ -58,7 +58,7 @@ public class RegisterController {
 		}
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/main", "root", "qwertyymca00");
+			Connection conn = DriverManager.getConnection("jdbc:mysql://javaproject.c4rqyk8nyct0.ap-northeast-2.rds.amazonaws.com:3306/main", "root", "qwertyymca00");
 			Statement stmt = conn.createStatement();
 			StringBuilder sb = new StringBuilder();
 			String sql = sb.append("select * from register_user where id = \"" + id + "\";").toString();
